@@ -24,15 +24,15 @@ class Game
 
   def end_game
     winner = @jedis.select{|jedi| !jedi.dead?}.first
-    puts "#{winner.name} has has killed them all!"
+    puts "#{winner.name} has killed them all!"
   end
 
   def run
     
     until (game_over?)
       @turn.next_round
-      current_jedi = @turn.current_player
-      enemy_jedi = @turn.enemy_player
+      current_jedi = @turn.get_current_player
+      enemy_jedi = @turn.get_enemy_player(current_jedi)
 
       current_jedi.attacks(enemy_jedi)
       summary

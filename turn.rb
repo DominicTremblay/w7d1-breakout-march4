@@ -4,8 +4,6 @@ class Turn
 
   def initialize(players)
     @players = players.shuffle
-    @current_player = nil
-    @enemy_player = nil
     @round = 0
   end
 
@@ -20,8 +18,6 @@ class Turn
   def next_round
     @round += 1
     puts "ROUND ##{@round} begins"
-    @current_player = get_current_player 
-    @enemy_player = get_enemy_player(@current_player)
     @players.rotate!
   end
 end
